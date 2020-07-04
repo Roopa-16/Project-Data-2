@@ -7,10 +7,12 @@ import datetime
 import requests
 from splinter import Browser
 from flask import Flask, jsonify, redirect
+from flask_cors import CORS
 import pymongo
 
 # Flask setup
 app = Flask(__name__)
+CORS(app)
 
 # Create connection variable
 conn = 'mongodb://localhost:27017'
@@ -32,7 +34,7 @@ def home():
     )
 
 
-@app.route("/get_tsunami_status")
+@app.route("/get_tsunami_status", methods=['GET'])
 def gettsunamistatus():
     # Get the one record in the collection tsunamistatus_collection,
     # which contains the web scraped tsunami status headline
@@ -43,10 +45,11 @@ def gettsunamistatus():
     del status_data['_id']
 
     # Return the status object
-    return (jsonify(status_data))
+    response = jsonify(status_data)
+    return response
 
 
-@app.route("/update_tsunami_status")
+@app.route("/update_tsunami_status", methods=['GET'])
 def updatetsunamistatus():
     # Open Chrome browser with chromedriver
     executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
@@ -87,7 +90,8 @@ def updatetsunamistatus():
     del dictTsunamiStatus['_id']
     
     # Return the status object
-    return(jsonify(dictTsunamiStatus))
+    response = jsonify(dictTsunamiStatus)
+    return response
 
   
 @app.route("/get_tsunami_data")
@@ -112,7 +116,8 @@ def gettsunamidata():
         temp_json_data = {}
 
     # Return the data object
-    return (jsonify(return_tsunami_data))
+    response = jsonify(return_tsunami_data)
+    return response
 
 
 if __name__ == "__main__":

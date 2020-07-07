@@ -9,6 +9,7 @@ from splinter import Browser
 from flask import Flask, jsonify, redirect
 from flask_cors import CORS
 import pymongo
+import platform
 
 # Flask setup
 app = Flask(__name__)
@@ -52,9 +53,9 @@ def gettsunamistatus():
 @app.route("/update_tsunami_status", methods=['GET'])
 def updatetsunamistatus():
     # Open Chrome browser with chromedriver
-    print("Enter 1 for Mac or 2 for Windows")
-    choice = input("Enter choice: ")
-    if (choice == "1"):
+    system = platform.system()
+    
+    if (system == "Darwin"):
         print("Mac Driver")
         executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
     else:

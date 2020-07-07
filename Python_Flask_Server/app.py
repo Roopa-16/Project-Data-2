@@ -52,7 +52,15 @@ def gettsunamistatus():
 @app.route("/update_tsunami_status", methods=['GET'])
 def updatetsunamistatus():
     # Open Chrome browser with chromedriver
-    executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    print("Enter 1 for Mac or 2 for Windows")
+    choice = input("Enter choice: ")
+    if (choice == "1"):
+        print("Mac Driver")
+        executable_path = {'executable_path': '/usr/local/bin/chromedriver'}
+    else:
+        print("Windows Driver")
+        executable_path = {'executable_path': 'chromedriver.exe'}
+
     browser = Browser('chrome', **executable_path, headless=False)
     time.sleep(2)
     
@@ -83,7 +91,10 @@ def updatetsunamistatus():
     dictTsunamiStatus["TimestampLocal"] = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
     
     # Remove existing rows
-    db.tsunamistatus_collection.delete_many({})
+    try:
+        db.tsunamistatus_collection.delete_many({})
+    except:
+        print("An exception occurred, continue running")
     
     # Insert new row
     db.tsunamistatus_collection.insert_one(dictTsunamiStatus)

@@ -100,6 +100,7 @@ fetch(get_tsunami_data_URL)
         "scrollY" : true
       });
     });
+
 }) // end fetch()
 .catch(error=>console.log(error));
 
@@ -110,16 +111,19 @@ function filterData(data, startYear, endYear) {
 
   data.forEach(function(d) {
     // Delete unwanted key-value pairs
-    delete d["Tsunami Event Validity"];
     delete d["Tsu Src"];
     delete d["Vol"];
     delete d["More Info"];
-    delete d["Doubtful Runup"];
     delete d["Period"];
     delete d["First Motion"];
 
-    // Check if year of current record is within the range passed into this function
-    if ((d["Year"] >= startYear) && (d["Year"] <= endYear)) {
+    // Filter for criteria:
+    //   - Year of current record is within the range passed into this function
+    //   - Tsunami Event Validity = 4, meaning Definite Tsunami
+    //   - Doubtful Runup = "n",       meaning runup entry was not doubtful
+    if (((d["Year"] >= startYear) && (d["Year"] <= endYear))  &&
+         (d["Tsunami Event Validity"] == 4) &&
+         (d["Doubtful Runup"] == "n")) {
       filteredData.push(d);
     } // end if
   }); // end forEach()

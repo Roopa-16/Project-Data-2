@@ -105,8 +105,8 @@ fetch(get_tsunami_data_URL)
     });
     // ----------- END DATA TABLE CREATION AND DISPLAY ---------------
 
-
-
+    graphTsunamisByYear(filteredData20Years);
+    graphTsunamiCauseCodesByMonth(filteredData20Years);
 
 
   }) // end fetch()

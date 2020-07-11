@@ -1,0 +1,9 @@
+.table {
+  font-size: 10px;
+}
+
+#map,
+body,
+html {
+  height: 100%;
+}

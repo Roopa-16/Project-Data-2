@@ -64,7 +64,6 @@ function graphCountryHistogram(data) {
 
   }) // end forEach()
 
-  console.log(countryArray);
   var trace = {
     x: countryArray,
     type: 'histogram',

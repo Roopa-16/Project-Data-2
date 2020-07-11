@@ -108,7 +108,9 @@ fetch(get_tsunami_data_URL)
     graphTsunamisByYear(filteredData20Years);
     graphCountryHistogram(filteredData20Years);
     graphTsunamiCauseCodesByMonth(filteredData20Years);
-
+    scatterMagnitudeVsHeight(filteredData20Years);
+    scatterHeightvsDistance(filteredData20Years);
+    scatterMagnitudevsDistance(filteredData20Years);
 
   }) // end fetch()
 .catch(error=>console.log(error));

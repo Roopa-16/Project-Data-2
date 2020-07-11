@@ -86,20 +86,22 @@ fetch(get_tsunami_data_URL)
     // Store a deep copy of the original dataset
     originalData = JSON.parse(JSON.stringify(data));
 
-    filterData(data, 2016, 2020);
+    filterData(data, 2000, 2020);
 
-    funFacts(9, 28);
+    // funFacts(9, 28);
 
     // Create data table in HTML with our json2table() function
-    document.getElementById('dataTable').innerHTML = json2table(filteredData, 'table table-sm table-striped');
+    // document.getElementById('dataTable').innerHTML = json2table(filteredData, 'table table-sm table-striped');
 
     // Once table is created, call DataTable which uses jQuery
-    $(document).ready( function () {
-      $('.table').DataTable( {
-        "scrollX" : true,
-        "scrollY" : true
-      });
-    });
+    // $(document).ready( function () {
+    //   $('.table').DataTable( {
+    //     "scrollX" : true,
+    //     "scrollY" : true
+    //   });
+    // });
+
+    graphTsunamisByYear();
 
 }) // end fetch()
 .catch(error=>console.log(error));
@@ -403,3 +405,44 @@ function json2table(json, classes) {
 
 } // end function json2table()
 
+
+function graphTsunamisByYear() {
+  var yearTotals = [];
+  var counter = 0;
+  var currentYear = 0;
+
+  for(i = 0; i < filteredData.length; i++) {
+    if (i == 0) {
+      // Initialize for first time
+      currentYear = filteredData[i]["Year"];
+      if (filteredData[i]["Maximum Water Height (m)"] > 0) {
+        counter += 1;
+      }
+    } // end if
+    else {  
+      if (filteredData[i]["Year"] == currentYear) {
+        if (filteredData[i]["Maximum Water Height (m)"] > 0) {
+          counter += 1;
+        }
+        if (i == (filteredData.length - 1)) {
+          yearTotals.push(counter);
+        }
+      }
+      else {
+        // Different year found
+        yearTotals.push(counter);
+        counter = 0;
+        currentYear = filteredData[i]["Year"];
+      }
+    } // end else
+  } // end for
+
+  
+  x_axis = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020];
+  y_axis = yearTotals;
+
+  // Create a plotly line chart using x_axis and y_axis above
+
+  
+
+} // end function graphTsunamisByYear()

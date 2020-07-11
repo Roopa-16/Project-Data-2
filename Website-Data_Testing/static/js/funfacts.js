@@ -7,7 +7,7 @@
 //            Largest Damage description category number found
 //            Largest Houses Destroyed description category number found
 //            Largest Houses Damaged description category number found
-function funFacts(data, inputMonth, inputDay) {
+function funFacts(data, inputMonth, inputDay, inputYear) {
   var nbrTsunamiEntries = 0;
   var maxWaterHeight = 0;
   var maxWaterHeightCountry = "";
@@ -26,7 +26,9 @@ function funFacts(data, inputMonth, inputDay) {
   
   data.forEach(function(d) {
     // Check for date match
-    if ((d["Mo"] == inputMonth) && (d["Dy"] == inputDay)) {
+    if ((d["Mo"] == inputMonth) && 
+        (d["Dy"] == inputDay) &&
+        (d["Year"] == inputYear)) {
 
       // Increment number of matched data rows
       nbrTsunamiEntries++;
@@ -185,7 +187,7 @@ function funFacts(data, inputMonth, inputDay) {
   } // end switch Houses Damaged Description  
 
 
-  console.log(`Fun facts to return about: Month ${inputMonth} and Day ${inputDay}:`);
+  console.log(`Fun facts to return about: Month ${inputMonth}, Day ${inputDay}, Year ${inputYear}:`);
   console.log(`Number of data rows found: ${nbrTsunamiEntries}`);
   console.log(`Max water height: ${maxWaterHeight} at country: ${maxWaterHeightCountry}`);
   console.log(`Death summary: ${maxDeathDescString}`);

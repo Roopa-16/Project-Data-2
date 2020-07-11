@@ -91,11 +91,11 @@ fetch(get_tsunami_data_URL)
     filteredData20Years = filterData(data, 2000, 2020);
     filteredData5Years = filterData(data, 2016, 2020);
 
-    funFacts(filteredData20Years, 9, 28);
+    funFacts(filteredData20Years, 3, 2, 2016);
 
     // ----------- BEGIN DATA TABLE CREATION AND DISPLAY ---------------
     // Create data table in HTML with our json2table() function
-    document.getElementById('dataTable').innerHTML = json2table(filteredData20Years, 'table table-sm table-striped');
+    document.getElementById('dataTable').innerHTML = json2table(filteredData5Years, 'table table-sm table-striped');
     // Once table is created, call DataTable which uses jQuery
     $(document).ready( function () {
       $('.table').DataTable( {

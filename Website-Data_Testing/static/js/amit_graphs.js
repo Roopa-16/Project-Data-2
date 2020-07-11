@@ -54,10 +54,10 @@ function graphTsunamisByYear(data) {
 } // end function graphTsunamisByYear()
 
 
-function graphCountryHistogram() {
+function graphCountryHistogram(data) {
   var countryArray = [];
 
-  filteredData.forEach(function(d) {
+  data.forEach(function(d) {
     if(d["Maximum Water Height (m)"] > 0) {
       countryArray.push(d["Country"]);
     } // end if
@@ -75,7 +75,7 @@ function graphCountryHistogram() {
 
 
 
-function graphYearHistogram() {
+function graphYearHistogram(data) {
   var yearArray = [];
 
   filteredData.forEach(function(d) {

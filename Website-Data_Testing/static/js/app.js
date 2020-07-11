@@ -106,6 +106,7 @@ fetch(get_tsunami_data_URL)
     // ----------- END DATA TABLE CREATION AND DISPLAY ---------------
 
     graphTsunamisByYear(filteredData20Years);
+    graphCountryHistogram(filteredData20Years);
     graphTsunamiCauseCodesByMonth(filteredData20Years);
 
 

@@ -128,7 +128,8 @@ function filterData(data, startYear, endYear) {
     //   - Doubtful Runup = "n",       meaning runup entry was not doubtful
     if (((d["Year"] >= startYear) && (d["Year"] <= endYear))  &&
          (d["Tsunami Event Validity"] == 4) &&
-         (d["Doubtful Runup"] == "n")) {
+         (d["Doubtful Runup"] == "n") &&
+         (d["Maximum Water Height (m)"] > 0)) {
       filteredData.push(d);
     } // end if
   }); // end forEach()

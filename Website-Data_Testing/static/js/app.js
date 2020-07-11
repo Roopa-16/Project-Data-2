@@ -9,7 +9,8 @@ var get_tsunami_data_URL      = "http://127.0.0.1:5000/get_tsunami_data";
 
 // Global dataset arrays
 var originalData = [];
-var filteredData = [];
+var filteredData20Years = [];
+var filteredData5Years = [];
 
 // Global tsunami status banner text strings
 var tsunamiStatusText = "";
@@ -86,13 +87,15 @@ fetch(get_tsunami_data_URL)
     // Store a deep copy of the original dataset
     originalData = JSON.parse(JSON.stringify(data));
 
-    filterData(data, 2000, 2020);
+    // Create filtered data arrays
+    filteredData20Years = filterData(data, 2000, 2020);
+    filteredData5Years = filterData(data, 2016, 2020);
 
-    funFacts(9, 28);
+    funFacts(filteredData20Years, 9, 28);
 
+    // ----------- BEGIN DATA TABLE CREATION AND DISPLAY ---------------
     // Create data table in HTML with our json2table() function
-    document.getElementById('dataTable').innerHTML = json2table(filteredData, 'table table-sm table-striped');
-
+    document.getElementById('dataTable').innerHTML = json2table(filteredData20Years, 'table table-sm table-striped');
     // Once table is created, call DataTable which uses jQuery
     $(document).ready( function () {
       $('.table').DataTable( {
@@ -100,7 +103,7 @@ fetch(get_tsunami_data_URL)
         "scrollY" : true
       });
     });
-
+    // ----------- END DATA TABLE CREATION AND DISPLAY ---------------
 
 
 
@@ -112,9 +115,12 @@ fetch(get_tsunami_data_URL)
 
 function filterData(data, startYear, endYear) {
   // Start with emptying filteredData
-  filteredData = [];
+  var filteredData = [];
 
-  data.forEach(function(d) {
+  // Create deep copy of data set into the function
+  var deepCopy = JSON.parse(JSON.stringify(data));
+
+  deepCopy.forEach(function(d) {
     // Delete unwanted key-value pairs
     delete d["Tsu Src"];
     delete d["Vol"];
@@ -134,6 +140,7 @@ function filterData(data, startYear, endYear) {
     } // end if
   }); // end forEach()
 
+  return filteredData;
 } // end function filterData()
 
 

@@ -7,7 +7,7 @@
 //            Largest Damage description category number found
 //            Largest Houses Destroyed description category number found
 //            Largest Houses Damaged description category number found
-function funFacts(inputMonth, inputDay) {
+function funFacts(data, inputMonth, inputDay) {
   var nbrTsunamiEntries = 0;
   var maxWaterHeight = 0;
   var maxWaterHeightCountry = "";
@@ -24,7 +24,7 @@ function funFacts(inputMonth, inputDay) {
   var maxHousesDamagedDesc = 0;
   var maxHousesDamagedDescString = "";
   
-  filteredData.forEach(function(d) {
+  data.forEach(function(d) {
     // Check for date match
     if ((d["Mo"] == inputMonth) && (d["Dy"] == inputDay)) {
 

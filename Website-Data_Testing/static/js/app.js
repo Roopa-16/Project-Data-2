@@ -407,42 +407,51 @@ function json2table(json, classes) {
 
 
 function graphTsunamisByYear() {
-  var yearTotals = [];
+  var monthTotals = [];
   var counter = 0;
-  var currentYear = 0;
+  var currentmonth = 0;
 
   for(i = 0; i < filteredData.length; i++) {
     if (i == 0) {
       // Initialize for first time
-      currentYear = filteredData[i]["Year"];
-      if (filteredData[i]["Maximum Water Height (m)"] > 0) {
+      currentmonth = filteredData[i]["Mo"];
+      if (filteredData[i]["Tsunami Cause Code"] > 0) {
         counter += 1;
       }
     } // end if
     else {  
-      if (filteredData[i]["Year"] == currentYear) {
-        if (filteredData[i]["Maximum Water Height (m)"] > 0) {
+      if (filteredData[i]["Mo"] == currentmonth) {
+        if (filteredData[i]["Tsunami Cause Code"] > 0) {
           counter += 1;
         }
         if (i == (filteredData.length - 1)) {
-          yearTotals.push(counter);
+          monthTotals.push(counter);
         }
       }
       else {
-        // Different year found
-        yearTotals.push(counter);
+        // Different month found
+        monthTotals.push(counter);
         counter = 0;
-        currentYear = filteredData[i]["Year"];
+        currentmonth = filteredData[i]["Mo"];
       }
     } // end else
   } // end for
 
   
-  x_axis = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020];
-  y_axis = yearTotals;
+  x_axis = [Jan, Feb, ,Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec];
+  y_axis = monthTotals;
 
   // Create a plotly line chart using x_axis and y_axis above
+ // end function graphTsunamisByYear()
+ var trace1 = {
+  x: x_axis,
+  y: y_axis,
+  fill: 'tozeroy',
+  type: 'scatter'
+ };
 
-  
+var data = [trace1];
 
-} // end function graphTsunamisByYear()
+Plotly.newPlot('Areagraph', data);
+ };
+

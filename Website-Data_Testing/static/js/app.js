@@ -347,7 +347,7 @@ function mapFunction(filteredData) {
         "<b>Year:</b> " + timeRecorded + "<br>" +
         "<b>Location:</b> " + filteredData[i]["Location Name"] + "<br>" +
         "<b>Magnitude:</b> " + filteredData[i]["Earthquake Magnitude"] + "<br>" +
-        "<b>Magnitude Category for Map:</b> " + tsunamiCauseDescription(filteredData[i]["Earthquake Magnitude"]) + "<br>"
+        "<b>Magnitude Category for Map:</b> " + circleCategory(filteredData[i]["Earthquake Magnitude"]) + "<br>"
       )
     )
 
@@ -474,8 +474,9 @@ function mapFunction(filteredData) {
     // Build legend and add to the map
     var legend = L.control({ position: 'bottomleft' });
 
-    legend.onAdd = function (myMap) {
+    legend.onAdd = function () {
       var div = L.DomUtil.create('div', 'info legend');
+     
       div.innerHTML += "<h4>Magnitude colors:"
       div.innerHTML += '<i style="background: ' + minimalGreen + '"></i><span>Magnitude <2; Minimal</span><br>';
       div.innerHTML += '<i style="background: ' + minorYellowGreen + '"></i><span>Magnitude 2-3; Minor</span><br>',
@@ -488,8 +489,17 @@ function mapFunction(filteredData) {
       div.innerHTML += '<i style="background: ' + extremeRed + '"></i><span>Magnitude 9-10; Extreme</span><br>';
       div.innerHTML += '<i style="background: ' + historicallyExtremeRed + '"></i><span>Magnitude >10; Historically Extreme</span><br>';
 
+      //Below is an alternative method to making the legend
+      // magnitudes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+      // for (var i = 0; i < magnitudes.length; i++) {
+      //   div.innerHTML +=
+      //     '<i style="background:' + circleColor(magnitudes[i] + 1) + '"></i> ' +
+      //       + magnitudes[i] + (magnitudes[i + 1] ? ' - ' + magnitudes[i + 1] + '<br>' : ' + ');
+      // }
+
       return div;
-    }
+    };
 
     legend.addTo(myMap);
   }

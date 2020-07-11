@@ -286,7 +286,7 @@ function mapFunction(filteredData) {
 
     // Define array to hold created earthquake markers
     var earthquakeCircleMarkers = [];
-    
+
     // Define array to hold created wave's water heightand cause markers
     var waterHeightandCauseMarkers = [];
 
@@ -320,7 +320,7 @@ function mapFunction(filteredData) {
                 "<b>Year:</b> " + timeRecorded + "<br>" +
                 "<b>Location:</b> " + filteredData[i]["Location Name"] + "<br>" +
                 "<b>Magnitude:</b> " + filteredData[i]["Earthquake Magnitude"] + "<br>" +
-                "<b>Magnitude Category for Map:</b> " + tsunamiCauseDescription(filteredData[i]["Earthquake Magnitude"]) + "<br>"
+                "<b>Magnitude Category for Map:</b> " + circleCategory(filteredData[i]["Earthquake Magnitude"]) + "<br>"
             )
         )
 

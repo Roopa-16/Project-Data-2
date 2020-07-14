@@ -466,5 +466,5 @@ function mapFunction(inputData) {
 
         legend.addTo(myMap);
     }
-    console.log("Returning from mapFunction");
+
 }

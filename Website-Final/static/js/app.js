@@ -12,32 +12,6 @@ var originalData = [];
 var filteredData20Years = [];
 var filteredData5Years = [];
 
-// Global tsunami status banner text strings
-var tsunamiStatusText = "";
-var tsunamiStatusTimestamp = "";
-
-// GET TSUNAMI STATUS STORED IN DB
-fetch(get_tsunami_status_URL)
-  .then((resp) => resp.json())
-  .then(function(data) {
-    console.log("Fetched tsunami status");
-    tsunamiStatusText = data.StatusMsg;
-    tsunamiStatusTimestamp = data.TimestampLocal;
-})
-.catch(error=>console.log(error));
-
-
-// // GET LATEST TSUNAMI STATUS VIA REQUESTING NEW WEB SCRAPE
-// fetch(update_tsunami_status_URL)
-//   .then((resp) => resp.json())
-//   .then(function(data) {
-//     console.log("Data contents:");
-//     console.log(data.StatusMsg);
-//     console.log(data.TimestampLocal);
-// })
-// .catch(error=>console.log(error));
-
-
 // GET TSUNAMI DATA
 fetch(get_tsunami_data_URL)
   .then((resp) => resp.json())
@@ -110,6 +84,14 @@ fetch(get_tsunami_data_URL)
     scatterHeightvsDistance(filteredData20Years);
     scatterMagnitudevsDistance(filteredData20Years);
 
+    // Get tsunami status
+    getTsunamiStatus();
+    
+    $('#updateStatusButton').on('click', function(event) {
+      event.preventDefault();
+      updateTsunamiStatus();
+    });
+    
   }) // end fetch()
 .catch(error=>console.log(error));
 

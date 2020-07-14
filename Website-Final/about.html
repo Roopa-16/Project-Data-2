@@ -20,9 +20,9 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
     
     <!-- OUR CSS -->
-    <link rel="stylesheet" type="text/css" href="./static/css/map_page_style.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/style.css">
 
-    <title>Project 2: Tsunami Dashboard - Map</title>
+    <title>Project 2: Tsunami Dashboard - About</title>
   </head>
   <body>
 
@@ -38,7 +38,7 @@
           <li class="nav-item">
             <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="./page_map.html">Map</a>
           </li>
           <li class="nav-item">
@@ -47,17 +47,42 @@
           <li class="nav-item">
             <a class="nav-link" href="http://localhost:8866/">Jupyter Notebook</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="./about.html">About</a>
           </li>
+        </ul>
         </ul>
 
       </div>
     </nav>
- 
-    <br><br><br><br><br>
-    <div id="map"></div> 
-    
+    <br><br><br><br>
+    <div class="container-fluid pt-6">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card bg-light">
+            <div class="card-body">
+              <h5 class="card-title"><b>Project 2 Site Creators</b></h5>
+              <hr>
+              <p class="card-text" id=tsunamistatus>Amit Patel<br>Daniah Al Bayati<br>Roopa Patel<br>Samuel Parks<br>Steven Lee</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card bg-light">
+            <div class="card-body">
+              <h5 class="card-title"><b>Project 2 Site Architecture</b></h5>
+              <hr>
+              <img src="./static/img/Project_2_Diagrams.png" alt="Project Architecture"  width="800" height="600">
+            </div>
+          </div>
+        </div>
+      </div>
+     
 
 
     
@@ -84,10 +109,7 @@
     <!-- DataTables using jQuery     -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
 
-    <!-- Our Code -->
-    <script  type="text/javascript" src="./static/js/config.js"></script>
-    <script  type="text/javascript" src="./static/js/mapFunction.js"></script>
-    <script  type="text/javascript" src="./static/js/map_page.js"></script>
+
 
   </body>
 </html>

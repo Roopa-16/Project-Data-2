@@ -191,10 +191,10 @@ function funFacts(data) {
       break;          
   } // end switch Houses Damaged Description  
 
-  document.getElementById("funfacts").innerHTML = `Fun facts for today's date ${currentMonthString}-${currentDayString}`
+  document.getElementById("funfacts").innerHTML = `Fun facts for today's date: ${currentMonthString}/${currentDayString}`
   
   if (nbrTsunamiEntries == 0) {
-    document.getElementById("funfactstext").innerHTML = "No tsunami events found on this date<br>" +
+    document.getElementById("funfactstext").innerHTML = "No tsunami events found with this Month and Day<br>" +
                                                         "Max water height recorded: 0 m<br>" +
                                                         "Death summary: None<br>" +
                                                         "Missing summary: None<br>" +
